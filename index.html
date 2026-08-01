@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kobido — Le Lifting Ancestral Japonais | Séance Découverte</title>
+  <meta name="description" content="Découvrez le Kobido, l'art ancestral japonais du lifting naturel. Visage drainé, ovale redessiné, éclat retrouvé en 45 minutes. Rejoignez la liste prioritaire — places limitées." />
+  <meta property="og:title" content="Kobido — Le Secret des Impératrices Japonaises" />
+  <meta property="og:description" content="Lifting naturel, drainage profond, éclat immédiat. 45 minutes pour transformer votre visage avec une technique ancestrale japonaise." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ────────────────────────────────────────────
+       TOKEN SYSTEM
+    ──────────────────────────────────────────── */
+    :root {
+      --ink:        #0A0A08;
+      --ink-soft:   #111110;
+      --gold:       #C9A96E;
+      --gold-light: #E2C99A;
+      --gold-dim:   #8A6E44;
+      --ivory:      #F5F0E8;
+      --ivory-muted:#D4CBB8;
+      --lacquer:    #6B1515;
+
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Jost', system-ui, sans-serif;
+      --ease-silk: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+      /* Max-width centré */
+      --page-max: 900px;
+      --page-pad: 32px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--ink);
+      color: var(--ivory);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ────────────────────────────────────────────
+       CONTAINER CENTRÉ — s'applique à tout le contenu
+    ──────────────────────────────────────────── */
+    .wrap {
+      max-width: var(--page-max);
+      margin: 0 auto;
+      padding: 0 var(--page-pad);
+    }
+
+    /* ────────────────────────────────────────────
+       SCROLL ANIMATIONS
+    ──────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.85s var(--ease-silk), transform 0.85s var(--ease-silk);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.12s; }
+    .reveal-delay-2 { transition-delay: 0.24s; }
+    .reveal-delay-3 { transition-delay: 0.36s; }
+
+    /* ────────────────────────────────────────────
+       NAVIGATION
+    ──────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      backdrop-filter: blur(14px);
+      background: rgba(10, 10, 8, 0.8);
+      border-bottom: 1px solid rgba(201, 169, 110, 0.14);
+    }
+    .nav-inner {
+      max-width: var(--page-max);
+      margin: 0 auto;
+      padding: 20px var(--page-pad);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 500;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      text-decoration: none;
+    }
+    .nav-cta {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: var(--gold);
+      padding: 10px 22px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .nav-cta:hover { background: var(--gold-light); }
+
+    /* ────────────────────────────────────────────
+       HERO — pleine largeur avec overlay, contenu centré
+    ──────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px var(--page-pad) 80px;
+      overflow: hidden;
+
+      /* Image de fond — dojo japonais (à remplacer par votre photo) */
+      background-color: var(--ink);
+      background-image:
+        linear-gradient(to bottom, rgba(10,10,8,0.62) 0%, rgba(10,10,8,0.75) 60%, rgba(10,10,8,0.95) 100%),
+        url('images/bg-hero.jpg');
+      background-size: cover;
+      background-position: center top;
+    }
+
+    /* Ligne verticale animée signature */
+    .hero-line {
+      position: absolute;
+      top: 0; left: 50%;
+      width: 1px;
+      height: 0;
+      background: linear-gradient(to bottom, transparent, var(--gold-dim), transparent);
+      animation: lineDown 2.2s var(--ease-silk) 0.6s forwards;
+      opacity: 0;
+    }
+    @keyframes lineDown {
+      from { height: 0; opacity: 0; }
+      to   { height: 100%; opacity: 1; }
+    }
+
+    .hero-eyebrow {
+      font-size: 0.66rem;
+      font-weight: 500;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.8s var(--ease-silk) 0.4s forwards;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      font-weight: 300;
+      line-height: 1.13;
+      color: var(--ivory);
+      max-width: 780px;
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.9s var(--ease-silk) 0.6s forwards;
+    }
+    .hero h1 em { font-style: italic; color: var(--gold); }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--ivory-muted);
+      max-width: 560px;
+      margin-bottom: 40px;
+      line-height: 1.8;
+      opacity: 0;
+      animation: fadeUp 0.9s var(--ease-silk) 0.8s forwards;
+    }
+
+    .hero-pills {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeUp 0.9s var(--ease-silk) 1s forwards;
+    }
+    .hero-pill {
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      border: 1px solid var(--gold-dim);
+      padding: 6px 14px;
+    }
+
+    /* Photo hero — sous le titre, au-dessus du form */
+    .hero-photo-wrap {
+      width: 100%;
+      max-width: 680px;
+      margin: 0 auto 56px;
+      opacity: 0;
+      animation: fadeUp 1s var(--ease-silk) 1s forwards;
+    }
+    .hero-photo-wrap img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      border: 1px solid rgba(201,169,110,0.2);
+    }
+    .hero-photo-caption {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    /* ────────────────────────────────────────────
+       FORM CARD — centré sous le hero
+    ──────────────────────────────────────────── */
+    .form-card {
+      width: 100%;
+      max-width: 560px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201, 169, 110, 0.25);
+      padding: 44px 40px;
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      animation: fadeUp 1s var(--ease-silk) 1.2s forwards;
+    }
+
+    .form-card-badge {
+      display: inline-block;
+      background: var(--lacquer);
+      color: var(--ivory);
+      font-size: 0.63rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      margin-bottom: 22px;
+    }
+
+    .form-card h2 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 400;
+      line-height: 1.3;
+      color: var(--ivory);
+      margin-bottom: 8px;
+      text-align: left;
+    }
+
+    .form-card-sub {
+      font-size: 0.85rem;
+      color: var(--ivory-muted);
+      margin-bottom: 28px;
+      line-height: 1.6;
+      text-align: left;
+    }
+
+    .places-counter {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 26px;
+    }
+    .places-dots { display: flex; gap: 5px; }
+    .places-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+    .places-dot.taken { background: rgba(201,169,110,0.18); }
+    .places-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    .form-group { margin-bottom: 14px; text-align: left; }
+    .form-group label {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 8px;
+    }
+    .form-group input {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201, 169, 110, 0.22);
+      color: var(--ivory);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 300;
+      padding: 13px 16px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .form-group input::placeholder { color: rgba(245,240,232,0.28); }
+    .form-group input:focus { border-color: var(--gold); }
+
+    .btn-primary {
+      display: block;
+      width: 100%;
+      background: var(--gold);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 0.76rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 17px 32px;
+      border: none;
+      cursor: pointer;
+      margin-top: 22px;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .btn-primary:active { transform: translateY(0); }
+
+    .form-reassurance {
+      font-size: 0.68rem;
+      color: rgba(245,240,232,0.38);
+      text-align: center;
+      margin-top: 13px;
+    }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 32px 0;
+    }
+    .form-success-icon { font-size: 2.2rem; margin-bottom: 14px; display: block; }
+    .form-success-title {
+      font-family: var(--font-display);
+      font-size: 1.7rem;
+      font-weight: 400;
+      color: var(--ivory);
+      margin-bottom: 10px;
+    }
+    .form-success-text {
+      font-size: 0.88rem;
+      color: var(--ivory-muted);
+      line-height: 1.7;
+    }
+
+    /* ────────────────────────────────────────────
+       DIVIDERS
+    ──────────────────────────────────────────── */
+    .section-divider {
+      max-width: var(--page-max);
+      margin: 0 auto;
+      padding: 20px var(--page-pad);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .section-divider::before,
+    .section-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+    }
+    .divider-kanji {
+      font-family: var(--font-display);
+      color: var(--gold-dim);
+      font-size: 1.1rem;
+    }
+
+    /* ────────────────────────────────────────────
+       SECTIONS — wrapper commun
+    ──────────────────────────────────────────── */
+    .section-outer {
+      /* Pleine largeur pour les fonds */
+      position: relative;
+    }
+    .section-outer.bg-soft { background: var(--ink-soft); }
+
+    /* ↓ Les fonds image pleine largeur */
+    .section-outer.bg-bamboo {
+      background-color: var(--ink);
+      background-image:
+        linear-gradient(to right, rgba(10,10,8,0.92) 0%, rgba(10,10,8,0.75) 50%, rgba(10,10,8,0.92) 100%),
+        url('images/bg-bamboo.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    .section-outer.bg-dojo {
+      background-color: var(--ink);
+      background-image:
+        linear-gradient(to bottom, rgba(10,10,8,0.85) 0%, rgba(10,10,8,0.65) 50%, rgba(10,10,8,0.85) 100%),
+        url('images/bg-dojo.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .section-inner {
+      max-width: var(--page-max);
+      margin: 0 auto;
+      padding: 88px var(--page-pad);
+    }
+
+    .section-label {
+      font-size: 0.63rem;
+      font-weight: 500;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 4vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--ivory);
+      margin-bottom: 16px;
+    }
+    .section-title em { font-style: italic; color: var(--gold); }
+
+    .section-subtitle {
+      font-size: 1rem;
+      color: var(--ivory-muted);
+      max-width: 600px;
+      margin-bottom: 56px;
+      line-height: 1.78;
+    }
+
+    /* ────────────────────────────────────────────
+       PHOTO INTERMÉDIAIRE — entre sections
+    ──────────────────────────────────────────── */
+    .section-photo {
+      width: 100%;
+      max-width: var(--page-max);
+      margin: 0 auto;
+      padding: 0 var(--page-pad);
+      margin-bottom: 56px;
+    }
+    .section-photo img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      border: 1px solid rgba(201,169,110,0.15);
+    }
+    .section-photo.half {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px;
+    }
+    .section-photo.half img { height: 300px; }
+    .photo-caption {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-top: 8px;
+    }
+
+    /* ────────────────────────────────────────────
+       PROBLÈME — grille 2 colonnes
+    ──────────────────────────────────────────── */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px;
+      margin-bottom: 56px;
+    }
+    .problem-card {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(201,169,110,0.1);
+      padding: 32px 28px;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .problem-card:hover {
+      background: rgba(201,169,110,0.05);
+      border-color: rgba(201,169,110,0.22);
+    }
+    .problem-icon { font-size: 1.5rem; margin-bottom: 14px; display: block; }
+    .problem-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--ivory);
+      margin-bottom: 8px;
+    }
+    .problem-desc {
+      font-size: 0.86rem;
+      color: var(--ivory-muted);
+      line-height: 1.7;
+    }
+
+    /* Solution */
+    .solution-panel {
+      background: rgba(201,169,110,0.06);
+      border: 1px solid rgba(201,169,110,0.18);
+      padding: 44px 48px;
+    }
+    .solution-panel h3 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 400;
+      line-height: 1.25;
+      color: var(--ivory);
+      margin-bottom: 20px;
+    }
+    .solution-panel p {
+      font-size: 0.95rem;
+      color: var(--ivory-muted);
+      line-height: 1.8;
+      margin-bottom: 28px;
+    }
+    .solution-list { list-style: none; }
+    .solution-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(201,169,110,0.1);
+      font-size: 0.9rem;
+      color: var(--ivory-muted);
+    }
+    .solution-list li:last-child { border-bottom: none; }
+    .solution-list li::before { content: '—'; color: var(--gold); flex-shrink: 0; }
+
+    /* ────────────────────────────────────────────
+       VISAGE ANNOTÉ — dessin technique
+    ──────────────────────────────────────────── */
+    .annotated-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      margin-top: 48px;
+    }
+    .annotated-wrap img {
+      width: 100%;
+      height: auto;
+      max-height: 440px;
+      object-fit: contain;
+      border: 1px solid rgba(201,169,110,0.15);
+      background: rgba(255,255,255,0.02);
+      padding: 20px;
+    }
+    .annotation-legend { }
+    .annotation-legend h4 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--ivory);
+      margin-bottom: 20px;
+    }
+    .annotation-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 13px 0;
+      border-bottom: 1px solid rgba(201,169,110,0.1);
+    }
+    .annotation-item:last-child { border-bottom: none; }
+    .annotation-number {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--gold);
+      font-weight: 500;
+      flex-shrink: 0;
+      min-width: 24px;
+    }
+    .annotation-text { font-size: 0.88rem; color: var(--ivory-muted); line-height: 1.65; }
+    .annotation-text strong { color: var(--ivory); font-weight: 400; }
+
+    /* ────────────────────────────────────────────
+       TRANSFORMATION AVANT / APRÈS
+    ──────────────────────────────────────────── */
+    .transform-grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 3px;
+      margin-bottom: 3px;
+    }
+    .transform-before,
+    .transform-after {
+      padding: 36px 24px;
+      min-height: 130px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .transform-before {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .transform-after {
+      background: rgba(201,169,110,0.07);
+      border: 1px solid rgba(201,169,110,0.18);
+    }
+    .transform-label {
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .transform-before .transform-label { color: rgba(245,240,232,0.3); }
+    .transform-after  .transform-label { color: var(--gold); }
+    .transform-text {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 400;
+      line-height: 1.3;
+    }
+    .transform-before .transform-text { color: rgba(245,240,232,0.42); }
+    .transform-after  .transform-text { color: var(--ivory); }
+    .transform-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(201,169,110,0.12);
+      padding: 0 14px;
+      color: var(--gold);
+      font-size: 0.9rem;
+    }
+
+    /* ────────────────────────────────────────────
+       OFFRE EXCLUSIVE
+    ──────────────────────────────────────────── */
+    .urgency-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(107,21,21,0.55);
+      border: 1px solid rgba(107,21,21,0.85);
+      color: #EAA0A0;
+      font-size: 0.66rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 7px 18px;
+      margin-bottom: 28px;
+    }
+    .urgency-pulse {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #EAA0A0;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.35; transform: scale(1.5); }
+    }
+
+    .offer-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.18;
+      color: var(--ivory);
+      margin-bottom: 18px;
+    }
+    .offer-desc {
+      font-size: 1rem;
+      color: var(--ivory-muted);
+      max-width: 560px;
+      margin: 0 auto 44px;
+      line-height: 1.78;
+    }
+
+    .spots-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    .spot {
+      width: 48px; height: 4px;
+      background: var(--gold);
+    }
+    .spot.taken { background: rgba(201,169,110,0.16); }
+    .spots-text {
+      font-size: 0.76rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 44px;
+    }
+
+    .offer-features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-bottom: 44px;
+      border: 1px solid rgba(201,169,110,0.1);
+      background: rgba(201,169,110,0.07);
+    }
+    .offer-feature {
+      background: var(--ink-soft);
+      padding: 26px 20px;
+      text-align: center;
+    }
+    .offer-feature-icon { font-size: 1.4rem; margin-bottom: 10px; display: block; }
+    .offer-feature-label {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--ivory);
+      margin-bottom: 4px;
+    }
+    .offer-feature-sub { font-size: 0.74rem; color: var(--ivory-muted); }
+
+    .offer-cta {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 0.76rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 18px 52px;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .offer-cta:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    /* ────────────────────────────────────────────
+       PROCESSUS 3 ÉTAPES
+    ──────────────────────────────────────────── */
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+      margin-top: 48px;
+    }
+    .process-step {
+      padding: 40px 32px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(201,169,110,0.08);
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .process-step:hover {
+      background: rgba(201,169,110,0.04);
+      border-color: rgba(201,169,110,0.16);
+    }
+    .step-number {
+      font-family: var(--font-display);
+      font-size: 3.2rem;
+      font-weight: 300;
+      color: rgba(201,169,110,0.16);
+      line-height: 1;
+      margin-bottom: 18px;
+    }
+    .step-title {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--ivory);
+      margin-bottom: 10px;
+    }
+    .step-desc { font-size: 0.86rem; color: var(--ivory-muted); line-height: 1.7; }
+
+    /* ────────────────────────────────────────────
+       FAQ ACCORDION
+    ──────────────────────────────────────────── */
+    .faq-item { border-bottom: 1px solid rgba(201,169,110,0.12); }
+    .faq-question {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 0;
+      cursor: pointer;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--ivory);
+      gap: 16px;
+      user-select: none;
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+    }
+    .faq-question:hover { color: var(--gold); }
+    .faq-icon {
+      flex-shrink: 0;
+      width: 20px; height: 20px;
+      border: 1px solid var(--gold-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: var(--gold);
+      transition: transform 0.3s;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s var(--ease-silk);
+    }
+    .faq-item.open .faq-answer { max-height: 300px; }
+    .faq-answer-inner {
+      padding: 0 0 22px;
+      font-size: 0.9rem;
+      color: var(--ivory-muted);
+      line-height: 1.75;
+    }
+
+    /* ────────────────────────────────────────────
+       FINAL CTA
+    ──────────────────────────────────────────── */
+    .final-cta-outer {
+      position: relative;
+      text-align: center;
+      overflow: hidden;
+      background-color: var(--ink);
+      background-image:
+        linear-gradient(to bottom, rgba(10,10,8,0.82) 0%, rgba(10,10,8,0.7) 50%, rgba(10,10,8,0.92) 100%),
+        url('images/bg-final.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+    .final-cta-outer::before {
+      content: '美';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-display);
+      font-size: 40vw;
+      color: rgba(201,169,110,0.04);
+      pointer-events: none;
+      user-select: none;
+    }
+    .final-cta-outer .section-inner { text-align: center; }
+    .final-cta-outer h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--ivory);
+      margin-bottom: 22px;
+      position: relative;
+    }
+    .final-cta-outer h2 em { font-style: italic; color: var(--gold); }
+    .final-cta-outer p {
+      font-size: 1rem;
+      color: var(--ivory-muted);
+      margin-bottom: 44px;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+    }
+
+    /* ────────────────────────────────────────────
+       FOOTER
+    ──────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid rgba(201,169,110,0.1);
+    }
+    .footer-inner {
+      max-width: var(--page-max);
+      margin: 0 auto;
+      padding: 36px var(--page-pad);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+    }
+    .footer-copy { font-size: 0.7rem; color: rgba(245,240,232,0.26); }
+
+    /* ────────────────────────────────────────────
+       RESPONSIVE
+    ──────────────────────────────────────────── */
+    @media (max-width: 700px) {
+      :root { --page-pad: 20px; }
+      .nav-cta { display: none; }
+
+      .hero { padding-top: 100px; }
+      .hero-photo-wrap img { height: 280px; }
+
+      .form-card { padding: 28px 22px; }
+      .problem-grid { grid-template-columns: 1fr; }
+      .solution-panel { padding: 32px 24px; }
+      .annotated-wrap { grid-template-columns: 1fr; }
+      .transform-grid { grid-template-columns: 1fr auto 1fr; }
+      .offer-features { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+      .section-photo.half { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; gap: 10px; text-align: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .hero-eyebrow, .hero h1, .hero-subtitle, .hero-pills,
+      .hero-photo-wrap, .form-card {
+        animation: none;
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+      .hero-line { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════ -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">古美道 · Kobido</a>
+      <a href="#liste-attente" class="nav-cta">Liste prioritaire</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════
+       HERO — pleine largeur, contenu centré
+  ═══════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero-line" aria-hidden="true"></div>
+
+    <span class="hero-eyebrow">Art ancestral japonais · XVe siècle</span>
+
+    <h1>
+      Un rendez-vous crucial aujourd'hui ?<br />
+      Révélez votre <em>éclat naturel</em><br />
+      en 45 minutes.
+    </h1>
+
+    <p class="hero-subtitle">
+      Le Kobido, lifting japonais ancestral des Impératrices, redessine votre ovale, draine en profondeur et révèle une luminosité immédiate — sans aiguille, sans bistouri.
+    </p>
+
+    <div class="hero-pills">
+      <span class="hero-pill">🌸 Lifting naturel</span>
+      <span class="hero-pill">💧 Drainage profond</span>
+      <span class="hero-pill">✨ Visible dès la 1ère séance</span>
+      <span class="hero-pill">⏱ 45 minutes</span>
+    </div>
+
+    <!-- PHOTO HERO — portrait modèle pendant soin -->
+    <div class="hero-photo-wrap">
+      <img
+        src="images/hero-soin.jpg"
+        alt="Soin Kobido — massage facial ancestral japonais"
+        width="680" height="420"
+        loading="eager"
+      />
+      <p class="hero-photo-caption">Séance Kobido · Soin lifting ancestral</p>
+    </div>
+
+    <!-- FORMULAIRE DE CAPTURE -->
+    <div class="form-card" id="liste-attente">
+      <span class="form-card-badge">⚡ Places limitées</span>
+      <h2>Rejoignez la liste<br />prioritaire</h2>
+      <p class="form-card-sub">
+        Tarif découverte préférentiel réservé aux <strong style="color:var(--gold)">10 premières inscrites</strong> seulement. Votre place est sur le point d'être prise.
+      </p>
+      <div class="places-counter">
+        <div class="places-dots" id="placesDots"></div>
+        <span class="places-label" id="placesLabel">— places restantes</span>
+      </div>
+      <form id="waitlistForm" novalidate>
+        <div class="form-group">
+          <label for="prenom">Prénom</label>
+          <input type="text" id="prenom" name="prenom" placeholder="Votre prénom" required autocomplete="given-name" />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="votre@email.com" required autocomplete="email" />
+        </div>
+        <div class="form-group">
+          <label for="telephone">Téléphone</label>
+          <input type="tel" id="telephone" name="telephone" placeholder="+33 6 XX XX XX XX" autocomplete="tel" />
+        </div>
+        <button type="submit" class="btn-primary" id="submitBtn">
+          Rejoindre la liste prioritaire →
+        </button>
+        <p class="form-reassurance">🔒 Données confidentielles. Aucun spam.</p>
+      </form>
+      <div class="form-success" id="formSuccess">
+        <span class="form-success-icon">🌸</span>
+        <div class="form-success-title">Vous êtes sur la liste !</div>
+        <p class="form-success-text">
+          Merci, <span id="successName"></span>. Vous recevrez un message sous 24h pour confirmer votre créneau prioritaire à tarif préférentiel ✨
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="section-divider" aria-hidden="true">
+    <span class="divider-kanji">古</span>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       PROBLÈME / SOLUTION
+  ═══════════════════════════════════ -->
+  <div class="section-outer">
+    <div class="section-inner">
+
+      <div class="reveal">
+        <span class="section-label">Vous vous reconnaissez ?</span>
+        <h2 class="section-title">Ces inconforts qui s'accumulent<br /><em>sans solution durable.</em></h2>
+        <p class="section-subtitle">Chaque matin, le même constat. Chaque événement, la même inquiétude. Votre visage mérite mieux qu'un correcteur de teint.</p>
+      </div>
+
+      <div class="problem-grid reveal reveal-delay-1">
+        <div class="problem-card">
+          <span class="problem-icon">🌅</span>
+          <div class="problem-title">Visage gonflé au réveil</div>
+          <p class="problem-desc">La rétention d'eau s'installe la nuit et déforme vos traits dès le matin. Aucun soin de surface ne suffit.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-icon">📅</span>
+          <div class="problem-title">Traits fatigués avant un événement</div>
+          <p class="problem-desc">Réunion importante, soirée, photo — vous voulez être au meilleur de vous-même, pas à couvrir.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-icon">⏳</span>
+          <div class="problem-title">Perte de fermeté et d'éclat</div>
+          <p class="problem-desc">L'ovale s'alourdit, la peau perd son ressort. Une réalité que les crèmes peinent à inverser seules.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-icon">🧠</span>
+          <div class="problem-title">Stress visible sur le visage</div>
+          <p class="problem-desc">La tension se loge dans les muscles faciaux. Votre corps parle pour vous — même quand vous souhaitez garder la sérénité.</p>
+        </div>
+      </div>
+
+      <!-- PHOTO — modèle se regardant dans miroir, traits fatigués (before) -->
+      <div class="section-photo reveal reveal-delay-2">
+        <img
+          src="images/before-apres.jpg"
+          alt="Transformation visage avant et après Kobido"
+          width="836" height="380"
+          loading="lazy"
+        />
+        <p class="photo-caption">Résultats — visage avant et après une séance Kobido</p>
+      </div>
+
+      <div class="solution-panel reveal">
+        <h3>La réponse ancestrale<br />à des besoins modernes.</h3>
+        <p>Le Kobido n'est pas un soin parmi d'autres. C'est une discipline transmise depuis le Japon médiéval, affinée pendant des siècles pour répondre précisément à ce que votre peau vit chaque jour.</p>
+        <ul class="solution-list">
+          <li>Gestuelle ancestrale japonaise codifiée à plus de 100 manœuvres distinctes</li>
+          <li>Drainage lymphatique profond — élimine toxines et rétention d'eau</li>
+          <li>Stimulation musculaire — raffermit et redessine l'ovale naturellement</li>
+          <li>Activation circulatoire — révèle un éclat immédiat et durable</li>
+          <li>Relâchement des tensions — décontracte les muscles crispés par le stress</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DIVIDER -->
+  <div class="section-divider" aria-hidden="true">
+    <span class="divider-kanji">道</span>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       VISAGE ANNOTÉ — technique & zones
+  ═══════════════════════════════════ -->
+  <div class="section-outer bg-bamboo">
+    <div class="section-inner">
+
+      <div class="reveal">
+        <span class="section-label">La technique</span>
+        <h2 class="section-title">Comprendre le Kobido<br /><em>zone par zone.</em></h2>
+        <p class="section-subtitle">Chaque geste est précis, chaque zone travaillée avec intention. Le Kobido agit en profondeur là où les tensions et l'affaissement s'installent.</p>
+      </div>
+
+      <div class="annotated-wrap reveal reveal-delay-1">
+        <!-- DESSIN ANNOTÉ — illustration technique du visage -->
+        <img
+          src="images/visage-annote.png"
+          alt="Dessin annoté des zones de travail Kobido — drainage et stimulation musculaire"
+          width="400" height="440"
+          loading="lazy"
+        />
+
+        <div class="annotation-legend">
+          <h4>Les 5 zones d'action</h4>
+          <div class="annotation-item">
+            <span class="annotation-number">①</span>
+            <div class="annotation-text">
+              <strong>Zone temporale & front</strong> — Libération des tensions liées au stress et relâchement du regard
+            </div>
+          </div>
+          <div class="annotation-item">
+            <span class="annotation-number">②</span>
+            <div class="annotation-text">
+              <strong>Zone orbitaire (contour des yeux)</strong> — Drainage des poches, estompage des cernes, reliftage du regard
+            </div>
+          </div>
+          <div class="annotation-item">
+            <span class="annotation-number">③</span>
+            <div class="annotation-text">
+              <strong>Zone zygomatique (pommettes)</strong> — Sculpting des reliefs, raffermissement et redéfinition des volumes
+            </div>
+          </div>
+          <div class="annotation-item">
+            <span class="annotation-number">④</span>
+            <div class="annotation-text">
+              <strong>Zone mandibulaire (mâchoire & ovale)</strong> — Drainage profond, décontraction du masséter, redéfinition de l'ovale
+            </div>
+          </div>
+          <div class="annotation-item">
+            <span class="annotation-number">⑤</span>
+            <div class="annotation-text">
+              <strong>Drainage cervical (cou & ganglions)</strong> — Évacuation des toxines, désengorgement global, effet jouvence
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DIVIDER -->
+  <div class="section-divider" aria-hidden="true">
+    <span class="divider-kanji">技</span>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       TRANSFORMATION AVANT / APRÈS
+  ═══════════════════════════════════ -->
+  <div class="section-outer">
+    <div class="section-inner">
+
+      <div class="reveal">
+        <span class="section-label">La transformation</span>
+        <h2 class="section-title">Avant → <em>Après</em></h2>
+        <p class="section-subtitle">Dès la première séance. Pas dans quelques semaines.</p>
+      </div>
+
+      <div class="transform-grid reveal reveal-delay-1">
+        <div class="transform-before">
+          <span class="transform-label">Avant</span>
+          <div class="transform-text">Visage gonflé</div>
+        </div>
+        <div class="transform-arrow">→</div>
+        <div class="transform-after">
+          <span class="transform-label">Après</span>
+          <div class="transform-text">Drainé et défini</div>
+        </div>
+      </div>
+      <div class="transform-grid reveal reveal-delay-2">
+        <div class="transform-before">
+          <span class="transform-label">Avant</span>
+          <div class="transform-text">Teint terne</div>
+        </div>
+        <div class="transform-arrow">→</div>
+        <div class="transform-after">
+          <span class="transform-label">Après</span>
+          <div class="transform-text">Lumineux et unifié</div>
+        </div>
+      </div>
+      <div class="transform-grid reveal reveal-delay-3">
+        <div class="transform-before">
+          <span class="transform-label">Avant</span>
+          <div class="transform-text">Ovale affaissé</div>
+        </div>
+        <div class="transform-arrow">→</div>
+        <div class="transform-after">
+          <span class="transform-label">Après</span>
+          <div class="transform-text">Redessiné et tonifié</div>
+        </div>
+      </div>
+      <div class="transform-grid reveal" style="margin-bottom:56px;">
+        <div class="transform-before">
+          <span class="transform-label">Avant</span>
+          <div class="transform-text">Traits crispés</div>
+        </div>
+        <div class="transform-arrow">→</div>
+        <div class="transform-after">
+          <span class="transform-label">Après</span>
+          <div class="transform-text">Décontractés et apaisés</div>
+        </div>
+      </div>
+
+      <!-- PHOTO DOUBLE — modèle en gros plan, peau lumineuse -->
+      <div class="section-photo half reveal">
+        <div>
+          <img
+            src="images/portrait-eclat.jpg"
+            alt="Portrait femme — éclat naturel après Kobido"
+            width="420" height="300"
+            loading="lazy"
+          />
+          <p class="photo-caption">Éclat naturel retrouvé</p>
+        </div>
+        <div>
+          <img
+            src="images/mains-soin.jpg"
+            alt="Mains praticienne — geste de soin Kobido"
+            width="420" height="300"
+            loading="lazy"
+          />
+          <p class="photo-caption">Gestuelle Kobido ancestrale</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       OFFRE EXCLUSIVE / SCARCITÉ
+  ═══════════════════════════════════ -->
+  <div class="section-outer bg-dojo">
+    <div class="section-inner" style="text-align:center;">
+
+      <div class="reveal">
+        <div class="urgency-badge">
+          <span class="urgency-pulse"></span>
+          Offre en cours — Places disponibles maintenant
+        </div>
+        <h2 class="offer-title">Votre séance découverte<br />à tarif préférentiel.</h2>
+        <p class="offer-desc">
+          Pour valider et affiner ma pratique, je propose un accès exclusif à ce tarif privilégié aux <strong style="color:var(--gold)">10 premières inscrites</strong>. Une fois les places prises, l'offre disparaît.
+        </p>
+      </div>
+
+      <div class="reveal reveal-delay-1">
+        <div class="spots-visual" id="heroSpotsDots"></div>
+        <p class="spots-text" id="heroSpotsText">— places encore disponibles</p>
+      </div>
+
+      <div class="offer-features reveal reveal-delay-2">
+        <div class="offer-feature">
+          <span class="offer-feature-icon">⏱</span>
+          <div class="offer-feature-label">45 minutes</div>
+          <div class="offer-feature-sub">Soin complet et personnalisé</div>
+        </div>
+        <div class="offer-feature">
+          <span class="offer-feature-icon">✨</span>
+          <div class="offer-feature-label">1 séance suffit</div>
+          <div class="offer-feature-sub">Résultats visibles immédiatement</div>
+        </div>
+        <div class="offer-feature">
+          <span class="offer-feature-icon">🌸</span>
+          <div class="offer-feature-label">Retour bienvenu</div>
+          <div class="offer-feature-sub">Votre avis nous aide à évoluer</div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-3">
+        <a href="#liste-attente" class="offer-cta">Réserver ma place prioritaire →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DIVIDER -->
+  <div class="section-divider" aria-hidden="true">
+    <span class="divider-kanji">美</span>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       PROCESSUS EN 3 ÉTAPES
+  ═══════════════════════════════════ -->
+  <div class="section-outer">
+    <div class="section-inner">
+
+      <div class="reveal">
+        <span class="section-label">Le déroulé de votre séance</span>
+        <h2 class="section-title">Simple. <em>Sensoriel. Souverain.</em></h2>
+        <p class="section-subtitle">De votre inscription à votre transformation, chaque étape est pensée pour votre confort et votre sérénité.</p>
+      </div>
+
+      <div class="process-steps">
+        <div class="process-step reveal reveal-delay-1">
+          <div class="step-number">01</div>
+          <div class="step-title">Inscription prioritaire</div>
+          <p class="step-desc">Remplissez le formulaire. Vous recevez sous 24h une confirmation et un créneau adapté à votre agenda.</p>
+        </div>
+        <div class="process-step reveal reveal-delay-2">
+          <div class="step-number">02</div>
+          <div class="step-title">La séance Kobido</div>
+          <p class="step-desc">45 minutes de rituel complet : bilan, nettoyage, gestuelle ancestrale, drainage, finalisation. Dans un espace calme et serein.</p>
+        </div>
+        <div class="process-step reveal reveal-delay-3">
+          <div class="step-number">03</div>
+          <div class="step-title">Votre retour d'expérience</div>
+          <p class="step-desc">En échange du tarif préférentiel, votre avis sincère nous aide à perfectionner la pratique. Aucune pression.</p>
+        </div>
+      </div>
+
+      <!-- PHOTO — ambiance espace de soin/dojo -->
+      <div class="section-photo reveal" style="padding: 0; margin-top: 56px;">
+        <img
+          src="images/espace-soin.jpg"
+          alt="Espace de soin Kobido — ambiance zen et sereine"
+          width="836" height="320"
+          style="height:320px;"
+          loading="lazy"
+        />
+        <p class="photo-caption">L'espace de soin — calme et sérénité</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DIVIDER -->
+  <div class="section-divider" aria-hidden="true">
+    <span class="divider-kanji">禅</span>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       FAQ
+  ═══════════════════════════════════ -->
+  <div class="section-outer" style="background: var(--ink-soft); border-top: 1px solid rgba(201,169,110,0.08);">
+    <div class="section-inner">
+
+      <div class="reveal">
+        <span class="section-label">Vos questions</span>
+        <h2 class="section-title">Tout ce que vous<br /><em>voulez savoir.</em></h2>
+      </div>
+
+      <div class="faq-list reveal reveal-delay-1">
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" id="faq-q1">
+            Combien de temps dure la séance ?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" id="faq-a1">
+            <div class="faq-answer-inner">
+              La séance complète dure <strong>45 minutes</strong> : bilan initial (5 min), nettoyage et préparation (5 min), soin Kobido (30 min), conseils post-soin (5 min).
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" id="faq-q2">
+            Les résultats sont-ils vraiment visibles dès la première séance ?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Oui. Le drainage lymphatique et la stimulation circulatoire produisent un effet visible immédiatement : teint unifié, visage drainé, traits détendus, luminosité retrouvée. Ces effets s'intensifient avec les séances régulières.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" id="faq-q3">
+            Est-ce que le Kobido est douloureux ?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Non. Le Kobido est une expérience sensorielle profondément relaxante. Certaines manœuvres de drainage peuvent sembler légèrement intenses, mais la séance est globalement apaisante et induit souvent un état de quasi-somnolence.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" id="faq-q4">
+            Quel est le tarif de la séance découverte ?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Le tarif préférentiel est communiqué lors de la confirmation de votre inscription. Il est significativement réduit par rapport au tarif habituel, en échange de votre retour d'expérience sincère.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" id="faq-q5">
+            Où se déroule la séance ?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Les modalités pratiques (lieu, adresse, accès) vous seront communiquées directement lors de la confirmation de votre créneau, par message ou email.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" id="faq-q6">
+            Est-ce adapté à tous les types de peau ?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Le Kobido convient à tous les types de peau, de 25 à 70 ans. En cas d'affections cutanées particulières (rosacée active, plaies, infections), merci de le mentionner lors de l'inscription pour un bilan personnalisé.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       FINAL CTA
+  ═══════════════════════════════════ -->
+  <div class="final-cta-outer">
+    <div class="section-inner">
+      <div class="reveal">
+        <h2>
+          Votre rituel de<br />
+          <em>jouvence</em> vous attend.
+        </h2>
+        <p>Il ne reste que quelques places à tarif préférentiel. Ne laissez pas passer cette parenthèse pour vous.</p>
+        <a href="#liste-attente" class="offer-cta" style="position:relative;z-index:1;">
+          Rejoindre la liste prioritaire →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-logo">古美道 · Kobido</span>
+      <span class="footer-copy">© 2026 · L'art ancestral japonais du soin visage · Données confidentielles.</span>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════
+       JAVASCRIPT
+  ═══════════════════════════════════ -->
+  <script>
+    /* ── PLACES COUNTER ──────────────────── */
+    var TOTAL_SPOTS = 10;
+    var TAKEN_SPOTS = 7;
+
+    function renderDots(containerId, labelId, taken, total, style) {
+      var container = document.getElementById(containerId);
+      var label     = document.getElementById(labelId);
+      if (!container) return;
+      container.innerHTML = '';
+      for (var i = 0; i < total; i++) {
+        var el = document.createElement('span');
+        el.className = style + (i < taken ? ' taken' : '');
+        container.appendChild(el);
+      }
+      if (label) label.textContent = (total - taken) + ' places encore disponibles';
+    }
+
+    renderDots('placesDots',    'placesLabel',   TAKEN_SPOTS, TOTAL_SPOTS, 'places-dot');
+    renderDots('heroSpotsDots', 'heroSpotsText', TAKEN_SPOTS, TOTAL_SPOTS, 'spot');
+
+    /* ── SCROLL REVEAL ──────────────────── */
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+
+    /* ── FAQ ACCORDION ──────────────────── */
+    document.querySelectorAll('.faq-question').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var item   = btn.closest('.faq-item');
+        var isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(function(i) {
+          i.classList.remove('open');
+          i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    /* ── FORM SUBMIT ──────────────────── */
+    var takenCount = TAKEN_SPOTS;
+
+    document.getElementById('waitlistForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var prenom = document.getElementById('prenom').value.trim();
+      var email  = document.getElementById('email').value.trim();
+      document.getElementById('prenom').style.borderColor = prenom ? '' : '#6B1515';
+      document.getElementById('email').style.borderColor  = email  ? '' : '#6B1515';
+      if (!prenom || !email) return;
+
+      var btn = document.getElementById('submitBtn');
+      btn.textContent = 'Inscription en cours…';
+      btn.disabled = true;
+
+      setTimeout(function() {
+        document.getElementById('waitlistForm').style.display = 'none';
+        document.getElementById('formSuccess').style.display  = 'block';
+        document.getElementById('successName').textContent    = prenom;
+        takenCount = Math.min(takenCount + 1, TOTAL_SPOTS);
+        renderDots('placesDots',    'placesLabel',   takenCount, TOTAL_SPOTS, 'places-dot');
+        renderDots('heroSpotsDots', 'heroSpotsText', takenCount, TOTAL_SPOTS, 'spot');
+      }, 900);
+    });
+
+    /* ── SMOOTH ANCHOR ──────────────────── */
+    document.querySelectorAll('a[href="#liste-attente"]').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('liste-attente').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(function() { document.getElementById('prenom').focus(); }, 600);
+      });
+    });
+  </script>
+</body>
+</html>
